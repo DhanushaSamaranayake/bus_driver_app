@@ -5,15 +5,19 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp(
+
+  runApp(
+    MyApp(
       child: MaterialApp(
-    title: 'Driver App',
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
+        title: 'Drivers App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MySplashScreen(),
+        debugShowCheckedModeBanner: false,
+      ),
     ),
-    home: const MySplashScreen(),
-    debugShowCheckedModeBanner: false,
-  )));
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -26,13 +30,12 @@ class MyApp extends StatefulWidget {
   }
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
-
   Key key = UniqueKey();
+
   void restartApp() {
     setState(() {
       key = UniqueKey();
