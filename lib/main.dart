@@ -1,23 +1,24 @@
 import 'package:bus_driver_app/SplashScreen/splash_screen.dart';
+import 'package:bus_driver_app/infoHandler/appInfo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
-  runApp(
-    MyApp(
-      child: MaterialApp(
-        title: 'Drivers App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MySplashScreen(),
-        debugShowCheckedModeBanner: false,
+  runApp(MyApp(
+      child: ChangeNotifierProvider(
+    create: (context) => AppInfo(),
+    child: MaterialApp(
+      title: 'Driver App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const MySplashScreen(),
+      debugShowCheckedModeBanner: false,
     ),
-  );
+  )));
 }
 
 class MyApp extends StatefulWidget {
@@ -30,12 +31,13 @@ class MyApp extends StatefulWidget {
   }
 
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  Key key = UniqueKey();
+  // This widget is the root of your application.
 
+  Key key = UniqueKey();
   void restartApp() {
     setState(() {
       key = UniqueKey();
