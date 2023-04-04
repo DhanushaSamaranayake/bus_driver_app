@@ -1,7 +1,9 @@
 import 'package:bus_driver_app/global/global.dart';
+import 'package:bus_driver_app/models/userRideRequest_Information.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PushNotificationSystem {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -63,6 +65,17 @@ class PushNotificationSystem {
 
         String userName = (snapData.snapshot.value! as Map)["userName"];
         String userPhone = (snapData.snapshot.value! as Map)["userPhone"];
+
+        UserRideRequestInformation userRideRequestInformation =
+            UserRideRequestInformation();
+        userRideRequestInformation.originLatLng = LatLng(originLng, originLat);
+        userRideRequestInformation.originAddress = originAdress;
+        userRideRequestInformation.destinationLatLng =
+            LatLng(destinationLng, destinationLat);
+        userRideRequestInformation.destinationAddress = destinationAdress;
+        userRideRequestInformation.rideRequestId = userRideRequestId;
+        userRideRequestInformation.userName = userName;
+        userRideRequestInformation.userPhone = userPhone;
       } else {
         Fluttertoast.showToast(msg: "This Ride Request ID do not exists");
       }
