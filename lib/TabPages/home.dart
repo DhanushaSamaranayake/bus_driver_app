@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bus_driver_app/assistants/assistents_methods.dart';
 import 'package:bus_driver_app/global/global.dart';
+import 'package:bus_driver_app/push_notification.dart/push_notification_system.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -237,11 +238,19 @@ class _HomeState extends State<Home> {
     print("this is your address = " + humanReadableAddress);
   }
 
+  readCurrentDriverInformation() async {
+    currentFirebaseUser = fAuth.currentUser;
+    PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
+    pushNotificationSystem.initializeCloudMessaging();
+    pushNotificationSystem.genarateAndGetToken();
+  }
+
   @override
   void initState() {
     super.initState();
 
     //checkIfLocationPermissionAllowed();
+    readCurrentDriverInformation();
   }
 
   @override
