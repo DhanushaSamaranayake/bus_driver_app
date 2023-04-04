@@ -1,7 +1,10 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:bus_driver_app/global/global.dart';
+import 'package:bus_driver_app/mainScreens/newtrip_screen.dart';
 import 'package:bus_driver_app/models/userRideRequest_Information.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class NotificationDialogBox extends StatefulWidget {
   UserRideRequestInformation? userRideRequestInformation;
@@ -134,7 +137,8 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
                           audioPlayer.stop();
 
                           audioPlayer = AssetsAudioPlayer();
-                          Navigator.pop(context);
+                          //accept the rideRequest
+                          acceptRideRequest(context);
                         },
                         child: const Text("Accept"),
                         style: ElevatedButton.styleFrom(
@@ -188,5 +192,41 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
         ),
       ),
     );
+  }
+
+  acceptRideRequest(BuildContext context) {
+    String getRideRequestId = "";
+    FirebaseDatabase.instance
+        .ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("newRideStatus")
+        .once()
+        .then((snap) {
+      if (snap.snapshot.value != null) {
+        getRideRequestId = snap.snapshot.value.toString();
+      } else {
+        Fluttertoast.showToast(msg: "This ride Request do not exists..");
+      }
+
+      if (getRideRequestId ==
+          widget.userRideRequestInformation!.rideRequestId) {
+        FirebaseDatabase.instance
+            .ref()
+            .child("drivers")
+            .child(currentFirebaseUser!.uid)
+            .child("newRideStatus")
+            .set("accepted");
+        //trip started now - send driver to newridescreen
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (c) => NewTripScreen(
+                    userRideRequestInformation:
+                        widget.userRideRequestInformation)));
+      } else {
+        Fluttertoast.showToast(msg: "This ride Request do not exists..");
+      }
+    });
   }
 }
