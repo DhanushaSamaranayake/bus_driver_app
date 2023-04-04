@@ -11,6 +11,8 @@ class PushNotificationSystem {
         .getInitialMessage()
         .then((RemoteMessage? remoteMessage) {
       if (remoteMessage != null) {
+        print("This is ride request ID : ");
+        print(remoteMessage.data["rideRequestId"]);
         //display the ride requst infomation - user infomation who request a ride
         //print("Remote Message: ${remoteMessage.data}");
       }
@@ -20,12 +22,16 @@ class PushNotificationSystem {
     FirebaseMessaging.onMessage.listen((RemoteMessage? remoteMessage) {
       //display the ride requst infomation - user infomation who request a ride
       //print("Remote Message: ${event.data}");
+      print("This is ride request ID : ");
+      print(remoteMessage!.data["rideRequestId"]);
     });
 
     //3.background(when app is in the background and opened directly from the push notification)
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage? remoteMessage) {
       //display the ride requst infomation - user infomation who request a ride
       //print("Remote Message: ${event.data}");
+      print("This is ride request ID : ");
+      print(remoteMessage!.data["rideRequestId"]);
     });
   }
 
