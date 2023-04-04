@@ -241,7 +241,7 @@ class _HomeState extends State<Home> {
   readCurrentDriverInformation() async {
     currentFirebaseUser = fAuth.currentUser;
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
-    pushNotificationSystem.initializeCloudMessaging();
+    pushNotificationSystem.initializeCloudMessaging(context);
     pushNotificationSystem.genarateAndGetToken();
   }
 

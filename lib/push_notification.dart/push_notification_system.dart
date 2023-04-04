@@ -1,14 +1,17 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:bus_driver_app/global/global.dart';
 import 'package:bus_driver_app/models/userRideRequest_Information.dart';
+import 'package:bus_driver_app/push_notification.dart/notification_dialogBox.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PushNotificationSystem {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-  Future initializeCloudMessaging() async {
+  Future initializeCloudMessaging(BuildContext context) async {
     //1. terminated state(app is completely closed and opened directly from the push notification)
     FirebaseMessaging.instance
         .getInitialMessage()
@@ -18,7 +21,8 @@ class PushNotificationSystem {
         print(remoteMessage.data["rideRequestId"]);
         //display the ride requst infomation - user infomation who request a ride
         //print("Remote Message: ${remoteMessage.data}");
-        readUserRideRequestInfomation(remoteMessage.data["rideRequestId"]);
+        readUserRideRequestInfomation(
+            remoteMessage.data["rideRequestId"], context);
       }
     });
 
@@ -26,22 +30,21 @@ class PushNotificationSystem {
     FirebaseMessaging.onMessage.listen((RemoteMessage? remoteMessage) {
       //display the ride requst infomation - user infomation who request a ride
       //print("Remote Message: ${event.data}");
-      print("This is ride request ID : ");
-      print(remoteMessage!.data["rideRequestId"]);
-      readUserRideRequestInfomation(remoteMessage.data["rideRequestId"]);
+      readUserRideRequestInfomation(
+          remoteMessage!.data["rideRequestId"], context);
     });
 
     //3.background(when app is in the background and opened directly from the push notification)
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage? remoteMessage) {
       //display the ride requst infomation - user infomation who request a ride
       //print("Remote Message: ${event.data}");
-      print("This is ride request ID : ");
-      print(remoteMessage!.data["rideRequestId"]);
-      readUserRideRequestInfomation(remoteMessage.data["rideRequestId"]);
+      readUserRideRequestInfomation(
+          remoteMessage!.data["rideRequestId"], context);
     });
   }
 
-  readUserRideRequestInfomation(String userRideRequestId) {
+  readUserRideRequestInfomation(
+      String userRideRequestId, BuildContext context) {
     FirebaseDatabase.instance
         .ref()
         .child("All Ride Requests")
@@ -49,6 +52,9 @@ class PushNotificationSystem {
         .once()
         .then((snapData) {
       if (snapData.snapshot.value != null) {
+        audioPlayer.open(Audio("assets/music/music_notification.mp3"));
+        audioPlayer.play();
+        //display the ride requst infomation - user infomation who request a ride
         double originLat = double.parse(
             (snapData.snapshot.value! as Map)["origin"]["latitude"]);
         double originLng = double.parse(
@@ -76,6 +82,11 @@ class PushNotificationSystem {
         userRideRequestInformation.rideRequestId = userRideRequestId;
         userRideRequestInformation.userName = userName;
         userRideRequestInformation.userPhone = userPhone;
+
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => NotificationDialogBox(
+                userRideRequestInformation: userRideRequestInformation));
       } else {
         Fluttertoast.showToast(msg: "This Ride Request ID do not exists");
       }
