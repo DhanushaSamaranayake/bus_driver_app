@@ -192,6 +192,14 @@ class _NewTripScreen extends State<NewTripScreen> {
           onlineDriverCurrentPosition!.latitude,
           onlineDriverCurrentPosition!.longitude);
 
+      Marker animatingMarker = Marker(
+        markerId: const MarkerId("AnimatedMarker"),
+        position: latLngLiveDriverPosition,
+        icon: iconAnimatedMarker!,
+        //rotation: AssistantMethods.createRandomNumber(360),
+        infoWindow: const InfoWindow(title: "Current Location"),
+      );
+
       setState(() {
         CameraPosition cameraPosition = CameraPosition(
           target: latLngLiveDriverPosition,
@@ -199,6 +207,10 @@ class _NewTripScreen extends State<NewTripScreen> {
         );
         newTripGoogleMapController!
             .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+        setOfMarkers.removeWhere(
+            (element) => element.markerId.value == "AnimatedMarker");
+        setOfMarkers.add(animatingMarker);
       });
     });
   }
@@ -236,6 +248,7 @@ class _NewTripScreen extends State<NewTripScreen> {
 
             drawPolyLineFromOriginToDestination(
                 driverCurrentLatLng, userPickUpLatLng!);
+            getDriversLocationUpdatesAtRealTime();
           },
         ),
 
