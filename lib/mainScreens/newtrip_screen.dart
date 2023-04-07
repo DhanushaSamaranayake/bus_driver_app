@@ -8,6 +8,7 @@ import 'package:bus_driver_app/widgets/progress.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class NewTripScreen extends StatefulWidget {
@@ -40,6 +41,8 @@ class _NewTripScreen extends State<NewTripScreen> {
   PolylinePoints polylinePoints = PolylinePoints();
 
   double mapPadding = 0;
+  BitmapDescriptor? iconAnimatedMarker;
+  var geoLocator = Geolocator();
 
   //1. when driver accepts the user ride request
   //originLatLng = driverCurrent Location
@@ -166,8 +169,21 @@ class _NewTripScreen extends State<NewTripScreen> {
     saveAssignedDriverDetailsToUserRideRequest();
   }
 
+  createDriverIconMarker() {
+    if (iconAnimatedMarker == null) {
+      ImageConfiguration imageConfiguration =
+          createLocalImageConfiguration(context, size: const Size(2, 2));
+      BitmapDescriptor.fromAssetImage(
+              imageConfiguration, "assets/images/car.png")
+          .then((value) {
+        iconAnimatedMarker = value;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    createDriverIconMarker();
     return Scaffold(
         body: Stack(
       children: [
