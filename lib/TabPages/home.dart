@@ -24,11 +24,10 @@ class _HomeState extends State<Home> {
   final Completer<GoogleMapController> _controllerGoogleMap = Completer();
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(6.927079, 79.861244),
     zoom: 14.4746,
   );
 
-  Position? driverCurrentPosition;
   var geolocator = Geolocator();
 
   String statusText = "Now Offline";

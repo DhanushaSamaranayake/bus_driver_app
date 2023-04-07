@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class NotificationDialogBox extends StatefulWidget {
-  UserRideRequestInformation? userRideRequestInformation;
+  UserRideRequestInformation? userRideRequest;
 
-  NotificationDialogBox({this.userRideRequestInformation});
+  NotificationDialogBox({this.userRideRequest});
 
   @override
   State<NotificationDialogBox> createState() => _NotificationDialogBox();
@@ -72,7 +72,7 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
                         Expanded(
                           child: Container(
                             child: Text(
-                              widget.userRideRequestInformation!.originAddress!,
+                              widget.userRideRequest!.originAddress!,
                               style: const TextStyle(fontSize: 16),
                             ),
                           ),
@@ -98,8 +98,7 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
                         Expanded(
                           child: Container(
                             child: Text(
-                              widget.userRideRequestInformation!
-                                  .destinationAddress!,
+                              widget.userRideRequest!.destinationAddress!,
                               style: const TextStyle(fontSize: 16),
                             ),
                           ),
@@ -209,8 +208,7 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
         Fluttertoast.showToast(msg: "This ride Request do not exists..");
       }
 
-      if (getRideRequestId ==
-          widget.userRideRequestInformation!.rideRequestId) {
+      if (getRideRequestId == widget.userRideRequest!.rideRequestId) {
         FirebaseDatabase.instance
             .ref()
             .child("drivers")
@@ -221,9 +219,9 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (c) => NewTripScreen(
-                    userRideRequestInformation:
-                        widget.userRideRequestInformation)));
+                builder: (c) =>
+                    NewTripScreen(userRideRequest: widget.userRideRequest)));
+        ;
       } else {
         Fluttertoast.showToast(msg: "This ride Request do not exists..");
       }

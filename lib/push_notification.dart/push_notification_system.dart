@@ -72,9 +72,11 @@ class PushNotificationSystem {
         String userName = (snapData.snapshot.value! as Map)["userName"];
         String userPhone = (snapData.snapshot.value! as Map)["userPhone"];
 
+        String? rideRequestId = snapData.snapshot.key;
+
         UserRideRequestInformation userRideRequestInformation =
             UserRideRequestInformation();
-        userRideRequestInformation.originLatLng = LatLng(originLng, originLat);
+        userRideRequestInformation.originLatLng = LatLng(originLat, originLng);
         userRideRequestInformation.originAddress = originAdress;
         userRideRequestInformation.destinationLatLng =
             LatLng(destinationLng, destinationLat);
@@ -82,11 +84,12 @@ class PushNotificationSystem {
         userRideRequestInformation.rideRequestId = userRideRequestId;
         userRideRequestInformation.userName = userName;
         userRideRequestInformation.userPhone = userPhone;
+        userRideRequestInformation.rideRequestId = rideRequestId;
 
         showDialog(
             context: context,
             builder: (BuildContext context) => NotificationDialogBox(
-                userRideRequestInformation: userRideRequestInformation));
+                userRideRequest: userRideRequestInformation));
       } else {
         Fluttertoast.showToast(msg: "This Ride Request ID do not exists");
       }

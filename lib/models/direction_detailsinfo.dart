@@ -1,14 +1,14 @@
 class DirectionDetailsInfo {
-  int? distance_value;
-  int? duration_value;
-  String? duration_text;
-  String? encoded_points;
-  String? distance_text;
+  int? distanceValue;
+  int? durationValue;
+  String? durationText;
+  String? encodedPoints;
+  String? distanceText;
 
   DirectionDetailsInfo(
-      {this.distance_value,
-      this.distance_text,
-      this.duration_value,
-      this.duration_text,
-      this.encoded_points});
+      {this.distanceValue,
+      this.distanceText,
+      this.durationValue,
+      this.durationText,
+      this.encodedPoints});
 }

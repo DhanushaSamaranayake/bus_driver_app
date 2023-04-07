@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bus_driver_app/assistants/req_assistens.dart';
 import 'package:bus_driver_app/global/global.dart';
 import 'package:bus_driver_app/global/map_key.dart';
@@ -60,17 +62,20 @@ class AssistantMethods {
     if (responseDirectionApi == "Error Occurred, Failed. No Response..") {
       return null;
     }
+    print("This is response  " + jsonEncode(responseDirectionApi));
+    print("This is origin  " + originPosition.toString());
+    print("This is destination  " + destinationPosition.toString());
 
     DirectionDetailsInfo directiondetailsInfo = DirectionDetailsInfo();
-    directiondetailsInfo.encoded_points =
+    directiondetailsInfo.encodedPoints =
         responseDirectionApi["routes"][0]["overview_polyline"]["points"];
-    directiondetailsInfo.distance_text =
+    directiondetailsInfo.distanceText =
         responseDirectionApi["routes"][0]["legs"][0]["distance"]["text"];
-    directiondetailsInfo.distance_value =
+    directiondetailsInfo.distanceValue =
         responseDirectionApi["routes"][0]["legs"][0]["distance"]["value"];
-    directiondetailsInfo.duration_text =
+    directiondetailsInfo.durationText =
         responseDirectionApi["routes"][0]["legs"][0]["duration"]["text"];
-    directiondetailsInfo.duration_value =
+    directiondetailsInfo.durationValue =
         responseDirectionApi["routes"][0]["legs"][0]["duration"]["value"];
 
     return directiondetailsInfo;

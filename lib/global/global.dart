@@ -10,3 +10,4 @@ User? currentFirebaseUser;
 UserModel? userModelCurrentInfo;
 StreamSubscription<Position>? streamSubscriptionPosition;
 AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
+Position? driverCurrentPosition;
