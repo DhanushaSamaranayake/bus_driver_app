@@ -420,9 +420,8 @@ class _NewTripScreen extends State<NewTripScreen> {
 
                   ElevatedButton.icon(
                       onPressed: () async {
-                        if (rideRequestStatus ==
-                            "accepted") //driver has arrived at user pickup location
-                        {
+                        //driver has arrived at user pickup location
+                        if (rideRequestStatus == "accepted") {
                           rideRequestStatus = "arrived";
                           FirebaseDatabase.instance
                               .ref()
@@ -446,6 +445,21 @@ class _NewTripScreen extends State<NewTripScreen> {
                               widget.userRideRequest!.destinationLatLng!);
                           Navigator.pop(context);
                         }
+                        //user has already sit in driver's bus - start trip now
+                        else if (rideRequestStatus == "arrived") {
+                          rideRequestStatus = "ontrip";
+                          FirebaseDatabase.instance
+                              .ref()
+                              .child("All Ride Requests")
+                              .child(widget.userRideRequest!.rideRequestId!)
+                              .child("status")
+                              .set(rideRequestStatus);
+
+                          setState(() {
+                            buttonTitle = "End Trip"; // end the trip
+                            buttonColor = Colors.redAccent;
+                          });
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         primary: buttonColor,
@@ -456,7 +470,7 @@ class _NewTripScreen extends State<NewTripScreen> {
                           ),
                         ),
                       ),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.directions_bus,
                         color: Colors.white,
                         size: 25,
