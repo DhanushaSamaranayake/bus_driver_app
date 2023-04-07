@@ -159,6 +159,7 @@ class _NewTripScreen extends State<NewTripScreen> {
     });
   }
 
+  @override
   void initState() {
     super.initState();
 
@@ -350,12 +351,12 @@ class _NewTripScreen extends State<NewTripScreen> {
   }
 
   saveAssignedDriverDetailsToUserRideRequest() {
-    /*DatabaseReference databaseReference = FirebaseDatabase.instance.ref()
-                                          .child("All Ride Requests")
-                                          .child(widget.userRideRequestDetails!.rideRequestId!);
+    DatabaseReference databaseReference = FirebaseDatabase.instance
+        .ref()
+        .child("All Ride Requests")
+        .child(widget.userRideRequest!.rideRequestId!);
 
-    Map driverLocationDataMap =
-    {
+    Map driverLocationDataMap = {
       "latitude": driverCurrentPosition!.latitude.toString(),
       "longitude": driverCurrentPosition!.longitude.toString(),
     };
@@ -365,18 +366,20 @@ class _NewTripScreen extends State<NewTripScreen> {
     databaseReference.child("driverId").set(onlineDriverData.id);
     databaseReference.child("driverName").set(onlineDriverData.name);
     databaseReference.child("driverPhone").set(onlineDriverData.phone);
-    databaseReference.child("car_details").set(onlineDriverData.car_color.toString() + onlineDriverData.car_model.toString());
-    
+    databaseReference.child("bus_details").set(
+        onlineDriverData.bus_color.toString() +
+            onlineDriverData.bus_model.toString());
+
     saveRideRequestIdToDriverHistory();
   }
 
-  saveRideRequestIdToDriverHistory()
-  {
-    DatabaseReference tripsHistoryRef = FirebaseDatabase.instance.ref()
-                                        .child("drivers")
-                                        .child(currentFirebaseUser!.uid)
-                                        .child("tripsHistory");
+  saveRideRequestIdToDriverHistory() {
+    DatabaseReference tripsHistoryRef = FirebaseDatabase.instance
+        .ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("tripsHistory");
 
-    tripsHistoryRef.child(widget.userRideRequestDetails!.rideRequestId!).set(true);*/
+    tripsHistoryRef.child(widget.userRideRequest!.rideRequestId!).set(true);
   }
 }
