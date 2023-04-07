@@ -44,6 +44,9 @@ class _NewTripScreen extends State<NewTripScreen> {
   BitmapDescriptor? iconAnimatedMarker;
   var geoLocator = Geolocator();
   Position? onlineDriverCurrentPosition;
+  String rideRequestStatus = "accepted";
+
+  String durationFromOriginToDestination = "";
 
   //1. when driver accepts the user ride request
   //originLatLng = driverCurrent Location
@@ -213,6 +216,27 @@ class _NewTripScreen extends State<NewTripScreen> {
         setOfMarkers.add(animatingMarker);
       });
     });
+  }
+
+  updateDurationTimeAtRealTime() async {
+    //driver current location
+    var originLatLng = LatLng(onlineDriverCurrentPosition!.latitude,
+        onlineDriverCurrentPosition!.longitude);
+    var destinationLatLng;
+    if (rideRequestStatus == "accepted") {
+      destinationLatLng =
+          widget.userRideRequest!.originLatLng; //user pickuplocation
+    } else {
+      destinationLatLng =
+          widget.userRideRequest!.destinationLatLng; //user dropoff location
+    }
+
+    var directionInformation =
+        await AssistantMethods.obtainOriginToDestinationDirectionDetails(
+            originLatLng, destinationLatLng);
+    if (directionInformation != null) {
+      durationFromOriginToDestination = directionInformation.durationText!;
+    }
   }
 
   @override
