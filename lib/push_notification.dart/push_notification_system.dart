@@ -79,7 +79,7 @@ class PushNotificationSystem {
         userRideRequestInformation.originLatLng = LatLng(originLat, originLng);
         userRideRequestInformation.originAddress = originAdress;
         userRideRequestInformation.destinationLatLng =
-            LatLng(destinationLng, destinationLat);
+            LatLng(destinationLat, destinationLng);
         userRideRequestInformation.destinationAddress = destinationAdress;
         userRideRequestInformation.rideRequestId = userRideRequestId;
         userRideRequestInformation.userName = userName;

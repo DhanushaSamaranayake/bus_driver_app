@@ -420,7 +420,7 @@ class _NewTripScreen extends State<NewTripScreen> {
                   ),
 
                   ElevatedButton.icon(
-                      onPressed: () {
+                      onPressed: () async {
                         if (statusBtn ==
                             "accepted") //driver has arrived at user pickup location
                         {
@@ -433,8 +433,19 @@ class _NewTripScreen extends State<NewTripScreen> {
                               .set(statusBtn);
                           setState(() {
                             buttonTitle = "Start Trip"; // start the trip
-                            buttonColor = Colors.lightGreenAccent;
+                            buttonColor = Colors.lightGreen;
                           });
+                          showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext c) => ProgressDialog(
+                                    message: "Loading...",
+                                  ));
+
+                          await drawPolyLineFromOriginToDestination(
+                              widget.userRideRequest!.originLatLng!,
+                              widget.userRideRequest!.destinationLatLng!);
+                          Navigator.pop(context);
                         }
                       },
                       style: ElevatedButton.styleFrom(
