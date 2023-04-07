@@ -43,6 +43,7 @@ class _NewTripScreen extends State<NewTripScreen> {
   double mapPadding = 0;
   BitmapDescriptor? iconAnimatedMarker;
   var geoLocator = Geolocator();
+  Position? onlineDriverCurrentPosition;
 
   //1. when driver accepts the user ride request
   //originLatLng = driverCurrent Location
@@ -179,6 +180,27 @@ class _NewTripScreen extends State<NewTripScreen> {
         iconAnimatedMarker = value;
       });
     }
+  }
+
+  getDriversLocationUpdatesAtRealTime() {
+    streamSubscriptionPositionDriverLivePosition =
+        Geolocator.getPositionStream().listen((Position position) {
+      driverCurrentPosition = position;
+      onlineDriverCurrentPosition = position;
+
+      LatLng latLngLiveDriverPosition = LatLng(
+          onlineDriverCurrentPosition!.latitude,
+          onlineDriverCurrentPosition!.longitude);
+
+      setState(() {
+        CameraPosition cameraPosition = CameraPosition(
+          target: latLngLiveDriverPosition,
+          zoom: 16,
+        );
+        newTripGoogleMapController!
+            .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      });
+    });
   }
 
   @override
