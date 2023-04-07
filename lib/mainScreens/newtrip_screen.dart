@@ -33,6 +33,7 @@ class _NewTripScreen extends State<NewTripScreen> {
 
   String? buttonTitle = "Arrived";
   Color? buttonColor = Colors.green;
+  String statusBtn = "accepted";
 
   Set<Marker> setOfMarkers = Set<Marker>();
   Set<Circle> setOfCircle = Set<Circle>();
@@ -419,7 +420,23 @@ class _NewTripScreen extends State<NewTripScreen> {
                   ),
 
                   ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        if (statusBtn ==
+                            "accepted") //driver has arrived at user pickup location
+                        {
+                          statusBtn = "arrived";
+                          FirebaseDatabase.instance
+                              .ref()
+                              .child("All Ride Requests")
+                              .child(widget.userRideRequest!.rideRequestId!)
+                              .child("status")
+                              .set(statusBtn);
+                          setState(() {
+                            buttonTitle = "Start Trip"; // start the trip
+                            buttonColor = Colors.lightGreenAccent;
+                          });
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: buttonColor,
                         onPrimary: Colors.white,
