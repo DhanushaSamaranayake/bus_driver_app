@@ -75,6 +75,25 @@ class _HomeState extends State<Home> {
 
   readCurrentDriverInformation() async {
     currentFirebaseUser = fAuth.currentUser;
+    FirebaseDatabase.instance
+        .ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .once()
+        .then((DatabaseEvent snap) {
+      if (snap.snapshot.value != null) {
+        onlineDriverData.id = (snap.snapshot.value as Map)["id"];
+        onlineDriverData.name = (snap.snapshot.value as Map)["name"];
+        onlineDriverData.phone = (snap.snapshot.value as Map)["phone"];
+        onlineDriverData.email = (snap.snapshot.value as Map)["email"];
+        onlineDriverData.bus_color =
+            (snap.snapshot.value as Map)["bus_details"]["bus_color"];
+        onlineDriverData.bus_number =
+            (snap.snapshot.value as Map)["bus_details"]["bus_number"];
+        onlineDriverData.bus_model =
+            (snap.snapshot.value as Map)["bus_details"]["bus_model"];
+      }
+    });
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
     pushNotificationSystem.initializeCloudMessaging(context);
     pushNotificationSystem.genarateAndGetToken();
