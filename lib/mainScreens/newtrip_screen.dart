@@ -261,6 +261,7 @@ class _NewTripScreen extends State<NewTripScreen> {
           durationFromOriginToDestination = directionInformation.durationText!;
         });
       }
+      isRequestDirectionDetails = false;
     }
   }
 
