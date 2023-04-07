@@ -48,6 +48,8 @@ class _NewTripScreen extends State<NewTripScreen> {
 
   String durationFromOriginToDestination = "";
 
+  bool isRequestDirectionDetails = false;
+
   //1. when driver accepts the user ride request
   //originLatLng = driverCurrent Location
   // destinationLatLng = user PickUp Location
@@ -186,6 +188,7 @@ class _NewTripScreen extends State<NewTripScreen> {
   }
 
   getDriversLocationUpdatesAtRealTime() {
+    LatLng oldLatLng = LatLng(0, 0);
     streamSubscriptionPositionDriverLivePosition =
         Geolocator.getPositionStream().listen((Position position) {
       driverCurrentPosition = position;
@@ -215,27 +218,49 @@ class _NewTripScreen extends State<NewTripScreen> {
             (element) => element.markerId.value == "AnimatedMarker");
         setOfMarkers.add(animatingMarker);
       });
+      oldLatLng = latLngLiveDriverPosition;
+      updateDurationTimeAtRealTime();
+
+      //updating driver location in realtime in the database
+      Map driverLatLngDataMap = {
+        "latitude": onlineDriverCurrentPosition!.latitude.toString(),
+        "longitude": onlineDriverCurrentPosition!.longitude.toString(),
+      };
+      FirebaseDatabase.instance
+          .ref()
+          .child("All Ride Requests")
+          .child(widget.userRideRequest!.rideRequestId!)
+          .child("driverLocation")
+          .set(driverLatLngDataMap);
     });
   }
 
   updateDurationTimeAtRealTime() async {
-    //driver current location
-    var originLatLng = LatLng(onlineDriverCurrentPosition!.latitude,
-        onlineDriverCurrentPosition!.longitude);
-    var destinationLatLng;
-    if (rideRequestStatus == "accepted") {
-      destinationLatLng =
-          widget.userRideRequest!.originLatLng; //user pickuplocation
-    } else {
-      destinationLatLng =
-          widget.userRideRequest!.destinationLatLng; //user dropoff location
-    }
+    if (isRequestDirectionDetails == false) {
+      isRequestDirectionDetails = true;
+      if (onlineDriverCurrentPosition == null) {
+        return;
+      }
+      //driver current location
+      var originLatLng = LatLng(onlineDriverCurrentPosition!.latitude,
+          onlineDriverCurrentPosition!.longitude);
+      var destinationLatLng;
+      if (rideRequestStatus == "accepted") {
+        destinationLatLng =
+            widget.userRideRequest!.originLatLng; //user pickuplocation
+      } else {
+        destinationLatLng =
+            widget.userRideRequest!.destinationLatLng; //user dropoff location
+      }
 
-    var directionInformation =
-        await AssistantMethods.obtainOriginToDestinationDirectionDetails(
-            originLatLng, destinationLatLng);
-    if (directionInformation != null) {
-      durationFromOriginToDestination = directionInformation.durationText!;
+      var directionInformation =
+          await AssistantMethods.obtainOriginToDestinationDirectionDetails(
+              originLatLng, destinationLatLng);
+      if (directionInformation != null) {
+        setState(() {
+          durationFromOriginToDestination = directionInformation.durationText!;
+        });
+      }
     }
   }
 
@@ -305,7 +330,7 @@ class _NewTripScreen extends State<NewTripScreen> {
                 children: [
                   //duration
                   Text(
-                    "10 min",
+                    durationFromOriginToDestination,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 18,
