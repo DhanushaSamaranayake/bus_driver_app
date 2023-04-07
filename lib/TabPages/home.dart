@@ -92,6 +92,11 @@ class _HomeState extends State<Home> {
             (snap.snapshot.value as Map)["bus_details"]["bus_number"];
         onlineDriverData.bus_model =
             (snap.snapshot.value as Map)["bus_details"]["bus_model"];
+
+        print("car details :: ");
+        print(onlineDriverData.bus_color);
+        print(onlineDriverData.bus_number);
+        print(onlineDriverData.bus_model);
       }
     });
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
