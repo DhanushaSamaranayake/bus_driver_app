@@ -1,4 +1,5 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:bus_driver_app/assistants/assistents_methods.dart';
 import 'package:bus_driver_app/global/global.dart';
 import 'package:bus_driver_app/mainScreens/newtrip_screen.dart';
 import 'package:bus_driver_app/models/userRideRequest_Information.dart';
@@ -215,6 +216,8 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
             .child(currentFirebaseUser!.uid)
             .child("newRideStatus")
             .set("accepted");
+
+        AssistantMethods.pauseLiveLocationUpdates();
         //trip started now - send driver to newridescreen
         Navigator.push(
             context,
