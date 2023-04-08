@@ -4,6 +4,7 @@ import 'package:bus_driver_app/assistants/custom_googleMap_theme.dart';
 import 'package:bus_driver_app/global/global.dart';
 import 'package:bus_driver_app/models/direction_detailsinfo.dart';
 import 'package:bus_driver_app/models/userRideRequest_Information.dart';
+import 'package:bus_driver_app/widgets/fare_amount_collection_dialog.dart';
 import 'package:bus_driver_app/widgets/progress.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -530,6 +531,12 @@ class _NewTripScreen extends State<NewTripScreen> {
 
     streamSubscriptionPositionDriverLivePosition!.cancel();
     Navigator.pop(context);
+
+    //display fare amount in dialog box
+    showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            FareAmountCollectionDialog(totalLocalAmount: totalLocalAmount));
   }
 
   saveAssignedDriverDetailsToUserRideRequest() {
