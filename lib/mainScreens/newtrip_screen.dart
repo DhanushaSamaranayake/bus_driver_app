@@ -512,7 +512,7 @@ class _NewTripScreen extends State<NewTripScreen> {
         await AssistantMethods.obtainOriginToDestinationDirectionDetails(
             currentDriverPositionLatLng, widget.userRideRequest!.originLatLng!);
     //fare amount
-    double totalLocalAmount =
+    double totalFareAmount =
         AssistantMethods.calculateFareAmountFromOriginToDestination(
             tripDirectionDetails!);
     FirebaseDatabase.instance
@@ -520,7 +520,7 @@ class _NewTripScreen extends State<NewTripScreen> {
         .child("All Ride Requests")
         .child(widget.userRideRequest!.rideRequestId!)
         .child("fareAmount")
-        .set(totalLocalAmount.toString());
+        .set(totalFareAmount.toString());
 
     FirebaseDatabase.instance
         .ref()
@@ -536,7 +536,7 @@ class _NewTripScreen extends State<NewTripScreen> {
     showDialog(
         context: context,
         builder: (BuildContext context) =>
-            FareAmountCollectionDialog(totalLocalAmount: totalLocalAmount));
+            FareAmountCollectionDialog(totalFareAmount: totalFareAmount));
   }
 
   saveAssignedDriverDetailsToUserRideRequest() {

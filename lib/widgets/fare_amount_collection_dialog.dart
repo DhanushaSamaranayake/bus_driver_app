@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FareAmountCollectionDialog extends StatefulWidget {
-  double? totalLocalAmount;
+  double? totalFareAmount;
 
-  FareAmountCollectionDialog({this.totalLocalAmount});
+  FareAmountCollectionDialog({this.totalFareAmount});
 
   @override
   State<FareAmountCollectionDialog> createState() =>
@@ -23,19 +23,22 @@ class _FareAmountCollectionDialog extends State<FareAmountCollectionDialog> {
       backgroundColor: Colors.transparent,
       child: Container(
         margin: const EdgeInsets.all(6),
-        height: 200,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(
               height: 20,
             ),
             Text(
-              "Trip Fare Amount " + "(" + driverVehicleType! + ")",
+              "Trip Fare Amount " +
+                  "(" +
+                  driverVehicleType!.toUpperCase() +
+                  ")",
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -45,7 +48,7 @@ class _FareAmountCollectionDialog extends State<FareAmountCollectionDialog> {
               height: 20,
             ),
             Text(
-              'Rs${widget.totalLocalAmount.toString()}',
+              'Rs${widget.totalFareAmount.toString()}',
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -54,20 +57,33 @@ class _FareAmountCollectionDialog extends State<FareAmountCollectionDialog> {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              "This is the total trip amount, please it collect from user",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "This is the total trip amount, please it collect from user",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 15,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 onPressed: () {
                   Future.delayed(const Duration(milliseconds: 2000), () {
                     SystemNavigator.pop();
@@ -75,25 +91,30 @@ class _FareAmountCollectionDialog extends State<FareAmountCollectionDialog> {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Collect Cash",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Icon(
-                      Icons.attach_money,
-                      color: Colors.grey,
-                      size: 20,
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "\Rs" + widget.totalFareAmount!.toString(),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
                     )
                   ],
                 ),
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 10,
             )
           ],
         ),
