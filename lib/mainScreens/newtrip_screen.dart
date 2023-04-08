@@ -529,6 +529,7 @@ class _NewTripScreen extends State<NewTripScreen> {
         .set("ended");
 
     streamSubscriptionPositionDriverLivePosition!.cancel();
+    Navigator.pop(context);
   }
 
   saveAssignedDriverDetailsToUserRideRequest() {
