@@ -92,4 +92,28 @@ class AssistantMethods {
     Geofire.setLocation(currentFirebaseUser!.uid,
         driverCurrentPosition!.latitude, driverCurrentPosition!.longitude);
   }
+
+  static double calculateFareAmountFromOriginToDestination(
+      DirectionDetailsInfo directionDetailsInfo) {
+    double timeTraveledFarePerMin =
+        (directionDetailsInfo.durationValue! / 60) * 0.2;
+    double distanceTraveledFarePerKM =
+        (directionDetailsInfo.durationValue! / 1000) * 0.2;
+    //USD type currency
+    double totalFareAmount = timeTraveledFarePerMin + distanceTraveledFarePerKM;
+
+    //convert to local currency 1 USD = 320 LKR
+    double totalLocalAmount = totalFareAmount * 320;
+    if (driverVehicleType == "Normal") {
+      double resultFareAmount = (totalFareAmount.truncate()) / 2.0;
+      return resultFareAmount;
+    } else if (driverVehicleType == "Semi") {
+      return totalFareAmount.truncate().toDouble();
+    } else if (driverVehicleType == "Luxury") {
+      double resultFareAmount = (totalFareAmount.truncate()) * 2.0;
+      return resultFareAmount;
+    } else {
+      return totalFareAmount.truncate().toDouble();
+    }
+  }
 }

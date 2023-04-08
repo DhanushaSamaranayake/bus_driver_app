@@ -459,6 +459,9 @@ class _NewTripScreen extends State<NewTripScreen> {
                             buttonTitle = "End Trip"; // end the trip
                             buttonColor = Colors.redAccent;
                           });
+                          //End - trip
+                        } else if (rideRequestStatus == "ontrip") {
+                          endTripNow();
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -490,6 +493,42 @@ class _NewTripScreen extends State<NewTripScreen> {
         )
       ],
     ));
+  }
+
+  endTripNow() async {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => ProgressDialog(
+              message: "Please Wait...",
+            ));
+    //get the trip direction details = distence
+    var currentDriverPositionLatLng = LatLng(
+        onlineDriverCurrentPosition!.latitude,
+        onlineDriverCurrentPosition!.longitude);
+
+    var tripDirectionDetails =
+        await AssistantMethods.obtainOriginToDestinationDirectionDetails(
+            currentDriverPositionLatLng, widget.userRideRequest!.originLatLng!);
+    //fare amount
+    double totalFareAmount =
+        AssistantMethods.calculateFareAmountFromOriginToDestination(
+            tripDirectionDetails!);
+    FirebaseDatabase.instance
+        .ref()
+        .child("All Ride Requests")
+        .child(widget.userRideRequest!.rideRequestId!)
+        .child("fareAmount")
+        .set(totalFareAmount.toString());
+
+    FirebaseDatabase.instance
+        .ref()
+        .child("All Ride Requests")
+        .child(widget.userRideRequest!.rideRequestId!)
+        .child("status")
+        .set("ended");
+
+    streamSubscriptionPositionDriverLivePosition!.cancel();
   }
 
   saveAssignedDriverDetailsToUserRideRequest() {

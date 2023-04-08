@@ -14,3 +14,4 @@ StreamSubscription<Position>? streamSubscriptionPositionDriverLivePosition;
 AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
 Position? driverCurrentPosition;
 DriverData onlineDriverData = DriverData();
+String? driverVehicleType = "";

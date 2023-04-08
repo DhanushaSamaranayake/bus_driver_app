@@ -92,6 +92,8 @@ class _HomeState extends State<Home> {
             (snap.snapshot.value as Map)["bus_details"]["bus_number"];
         onlineDriverData.bus_model =
             (snap.snapshot.value as Map)["bus_details"]["bus_model"];
+        driverVehicleType =
+            (snap.snapshot.value as Map)["bus_details"]["bus_type"];
 
         print("car details :: ");
         print(onlineDriverData.bus_color);
