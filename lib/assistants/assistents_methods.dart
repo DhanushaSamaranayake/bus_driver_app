@@ -105,15 +105,15 @@ class AssistantMethods {
     //convert to local currency 1 USD = 320 LKR
     double totalLocalAmount = totalFareAmount * 320;
     if (driverVehicleType == "Normal") {
-      double resultFareAmount = (totalFareAmount.truncate()) / 2.0;
+      double resultFareAmount = (totalLocalAmount.truncate()) / 2.0;
       return resultFareAmount;
     } else if (driverVehicleType == "Semi") {
       return totalFareAmount.truncate().toDouble();
     } else if (driverVehicleType == "Luxury") {
-      double resultFareAmount = (totalFareAmount.truncate()) * 2.0;
+      double resultFareAmount = (totalLocalAmount.truncate()) * 2.0;
       return resultFareAmount;
     } else {
-      return totalFareAmount.truncate().toDouble();
+      return totalLocalAmount.truncate().toDouble();
     }
   }
 }
