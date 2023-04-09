@@ -5,6 +5,7 @@ import 'package:bus_driver_app/mainScreens/newtrip_screen.dart';
 import 'package:bus_driver_app/models/userRideRequest_Information.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class NotificationDialogBox extends StatefulWidget {
@@ -170,7 +171,37 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
                           audioPlayer.stop();
                           audioPlayer = AssetsAudioPlayer();
 
-                          Navigator.pop(context);
+                          //reject the rideRequest
+                          FirebaseDatabase.instance
+                              .ref()
+                              .child("All Ride Requests")
+                              .child(widget.userRideRequest!.rideRequestId!)
+                              .remove()
+                              .then((value) {
+                            FirebaseDatabase.instance
+                                .ref()
+                                .child("drivers")
+                                .child(currentFirebaseUser!.uid)
+                                .child("newRideStatus")
+                                .set("idle");
+                          }).then((value) {
+                            FirebaseDatabase.instance
+                                .ref()
+                                .child("drivers")
+                                .child(currentFirebaseUser!.uid)
+                                .child("tripsHistory")
+                                .child(widget.userRideRequest!.rideRequestId!)
+                                .remove();
+                          }).then((value) {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "Ride Request has been Cancelled, Successfully , Restart App Now...");
+                          });
+
+                          Future.delayed(const Duration(milliseconds: 2000),
+                              () {
+                            SystemNavigator.pop();
+                          });
                         },
                         child: const Text("Reject"),
                         style: ElevatedButton.styleFrom(
