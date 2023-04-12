@@ -14,3 +14,5 @@ AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
 Position? driverCurrentPosition;
 DriverData onlineDriverData = DriverData();
 String? driverVehicleType = "";
+double ratingsNumber = 0;
+String titleRating = "Good";

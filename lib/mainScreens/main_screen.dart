@@ -39,8 +39,8 @@ class _MainScreenState extends State<MainScreen>
         children: const [
           Home(),
           Earning(),
-          Rating(),
-          Profile(),
+          RatingsTabPage(),
+          ProfileTabPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

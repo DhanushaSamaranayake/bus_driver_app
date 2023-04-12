@@ -71,6 +71,8 @@ class _HomeState extends State<Home> {
         await AssistantMethods.searchAddressForGeographCordinates(
             driverCurrentPosition!, context);
     print("this is your address = " + humanReadableAddress);
+
+    AssistantMethods.readDriverRating(context);
   }
 
   readCurrentDriverInformation() async {
