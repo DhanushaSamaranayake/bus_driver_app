@@ -8,7 +8,6 @@ import 'package:geolocator/geolocator.dart';
 
 final FirebaseAuth fAuth = FirebaseAuth.instance;
 User? currentFirebaseUser;
-UserModel? userModelCurrentInfo;
 StreamSubscription<Position>? streamSubscriptionPosition;
 StreamSubscription<Position>? streamSubscriptionPositionDriverLivePosition;
 AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();

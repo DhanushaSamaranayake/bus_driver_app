@@ -104,6 +104,8 @@ class _HomeState extends State<Home> {
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
     pushNotificationSystem.initializeCloudMessaging(context);
     pushNotificationSystem.genarateAndGetToken();
+
+    AssistantMethods.readDriverEarnings(context);
   }
 
   @override

@@ -590,12 +590,15 @@ class _NewTripScreen extends State<NewTripScreen> {
     databaseReference.child("driverPhone").set(onlineDriverData.phone);
     databaseReference.child("bus_details").set(
         onlineDriverData.bus_color.toString() +
-            onlineDriverData.bus_model.toString());
+            " " +
+            onlineDriverData.bus_model.toString() +
+            " " +
+            onlineDriverData.bus_number.toString());
 
-    saveRideRequestIdToDriverHistory();
+    //saveRideRequestIdToDriverHistory();
   }
 
-  saveRideRequestIdToDriverHistory() {
+  /*saveRideRequestIdToDriverHistory() {
     DatabaseReference tripsHistoryRef = FirebaseDatabase.instance
         .ref()
         .child("drivers")
@@ -603,5 +606,5 @@ class _NewTripScreen extends State<NewTripScreen> {
         .child("tripsHistory");
 
     tripsHistoryRef.child(widget.userRideRequest!.rideRequestId!).set(true);
-  }
+  }*/
 }
