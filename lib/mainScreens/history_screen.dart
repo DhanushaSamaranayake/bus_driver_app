@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class TripsHistoryScreen extends StatefulWidget {
+  const TripsHistoryScreen({Key? key}) : super(key: key);
   @override
   State<TripsHistoryScreen> createState() => _TripsHistoryScreen();
 }
@@ -18,7 +19,7 @@ class _TripsHistoryScreen extends State<TripsHistoryScreen> {
         title: const Text("Trips History"),
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              SystemNavigator.pop();
             },
             icon: const Icon(Icons.close)),
       ),
@@ -30,12 +31,12 @@ class _TripsHistoryScreen extends State<TripsHistoryScreen> {
         ),
         itemBuilder: (context, i) {
           return HistoryDesignUi(
-            tripHistoryModel: Provider.of<AppInfo>(context, listen: false)
-                .allHistoryTripList[i],
+            tripHistoryModel:
+                Provider.of<AppInfo>(context).allHistoryTripList[i],
           );
         },
-        itemCount: Provider.of<AppInfo>(context, listen: false)
-            .allHistoryTripList
+        itemCount: Set.from(Provider.of<AppInfo>(context).allHistoryTripList)
+            .toList()
             .length,
         physics: const ClampingScrollPhysics(),
         shrinkWrap: true,

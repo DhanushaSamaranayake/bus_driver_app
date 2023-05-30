@@ -1,6 +1,8 @@
+import 'package:bus_driver_app/assistants/assistents_methods.dart';
 import 'package:bus_driver_app/infoHandler/appInfo.dart';
 import 'package:bus_driver_app/mainScreens/history_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class Earning extends StatefulWidget {
@@ -12,7 +14,15 @@ class Earning extends StatefulWidget {
 
 class _EarningState extends State<Earning> {
   @override
+  void initState() {
+    super.initState();
+    AssistantMethods.readDriverEarnings(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Container(
         color: Colors.white,
         child: Column(
@@ -30,7 +40,8 @@ class _EarningState extends State<Earning> {
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none),
                     ),
                     const SizedBox(
                       height: 10,
@@ -42,7 +53,8 @@ class _EarningState extends State<Earning> {
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 40,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none),
                     ),
                   ],
                 ),
@@ -63,8 +75,8 @@ class _EarningState extends State<Earning> {
                   child: Row(
                     children: [
                       Image.asset(
-                        "assets/images/car_logo.png",
-                        width: 100,
+                        "assets/images/Luxury.png",
+                        width: 120,
                       ),
                       const SizedBox(width: 10),
                       const Text(
@@ -77,6 +89,7 @@ class _EarningState extends State<Earning> {
                           child: Text(
                             Provider.of<AppInfo>(context, listen: false)
                                 .allHistoryTripList
+                                .toSet()
                                 .length
                                 .toString(),
                             textAlign: TextAlign.end,

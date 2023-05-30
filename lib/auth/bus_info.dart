@@ -65,6 +65,9 @@ class _BusInfo extends State<BusInfo> {
                 color: Colors.black,
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             TextField(
               controller: busModelTexteditingController,
               keyboardType: TextInputType.text,
@@ -72,23 +75,37 @@ class _BusInfo extends State<BusInfo> {
                 color: Colors.black,
                 fontSize: 13.0,
               ),
-              decoration: const InputDecoration(
-                  labelText: "Bus Model",
-                  hintText: "Bus Model",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10.0,
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                  )),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                prefixIcon: const Icon(
+                  Icons.bus_alert,
+                  color: Colors.black,
+                ),
+                labelText: "Bus Model",
+                hintText: "Bus Model",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                hintStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                labelStyle: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             TextField(
               controller: busNumberTexteditingController,
@@ -96,23 +113,37 @@ class _BusInfo extends State<BusInfo> {
                 color: Colors.black,
                 fontSize: 13.0,
               ),
-              decoration: const InputDecoration(
-                  labelText: "Bus Number",
-                  hintText: "Bus Number",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10.0,
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                  )),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                prefixIcon: const Icon(
+                  Icons.bus_alert,
+                  color: Colors.black,
+                ),
+                labelText: "Bus Number",
+                hintText: "Bus Number",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                hintStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                labelStyle: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             TextField(
               controller: busColorTexteditingController,
@@ -120,23 +151,34 @@ class _BusInfo extends State<BusInfo> {
                 color: Colors.black,
                 fontSize: 13.0,
               ),
-              decoration: const InputDecoration(
-                  labelText: "Bus Color",
-                  hintText: "Bus Color",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10.0,
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                  )),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                prefixIcon: const Icon(
+                  Icons.color_lens,
+                  color: Colors.black,
+                ),
+                labelText: "Bus Color",
+                hintText: "Bus Color",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                hintStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                labelStyle: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0,
+                ),
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -159,7 +201,12 @@ class _BusInfo extends State<BusInfo> {
                 return DropdownMenuItem(
                   child: Text(
                     bus,
-                    style: const TextStyle(color: Color.fromARGB(163, 0, 0, 0)),
+                    style: TextStyle(
+                      color: Color.fromARGB(163, 0, 0, 0),
+                      fontSize: 16, // Modify the font size
+                      fontWeight: FontWeight.bold, // Modify the font weight
+                      fontStyle: FontStyle.italic, // Add italic style
+                    ),
                   ),
                   value: bus,
                 );
@@ -178,16 +225,18 @@ class _BusInfo extends State<BusInfo> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black,
-                  onPrimary: Colors.white,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(14)),
+                  minimumSize: const Size(double.infinity, 50),
+                  primary: Colors.transparent,
+                  onPrimary: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    side: const BorderSide(color: Colors.red),
                   ),
+                  elevation: 0, // Remove button elevation
                 ),
                 child: const Text(
                   "Save Now",
-                  style: TextStyle(
-                      color: Color.fromARGB(137, 255, 255, 255), fontSize: 18),
+                  style: TextStyle(color: Colors.black, fontSize: 18),
                 ))
           ],
         ),

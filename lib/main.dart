@@ -10,12 +10,9 @@ void main() async {
   runApp(MyApp(
       child: ChangeNotifierProvider(
     create: (context) => AppInfo(),
-    child: MaterialApp(
+    child: const MaterialApp(
       title: 'Driver App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MySplashScreen(),
+      home: MySplashScreen(),
       debugShowCheckedModeBanner: false,
     ),
   )));

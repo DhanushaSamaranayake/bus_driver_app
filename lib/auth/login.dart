@@ -119,23 +119,37 @@ class _LoginScreen extends State<LoginScreen> {
                 color: Colors.black,
                 fontSize: 10.0,
               ),
-              decoration: const InputDecoration(
-                  labelText: "Email",
-                  hintText: "Email",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10.0,
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                  )),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                prefixIcon: const Icon(
+                  Icons.email,
+                  color: Colors.black,
+                ),
+                labelText: "Email",
+                hintText: "Email",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                hintStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                labelStyle: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             TextField(
               controller: passwordTexteditingController,
@@ -145,23 +159,34 @@ class _LoginScreen extends State<LoginScreen> {
                 color: Colors.black,
                 fontSize: 10.0,
               ),
-              decoration: const InputDecoration(
-                  labelText: "Password",
-                  hintText: "Password",
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black),
-                  ),
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 10.0,
-                  ),
-                  labelStyle: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.0,
-                  )),
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                prefixIcon: const Icon(
+                  Icons.lock,
+                  color: Colors.black,
+                ),
+                labelText: "Password",
+                hintText: "Password",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                hintStyle: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 10.0,
+                ),
+                labelStyle: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.0,
+                ),
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -171,16 +196,18 @@ class _LoginScreen extends State<LoginScreen> {
                   validateForm();
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black,
-                  onPrimary: Colors.white,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(14)),
+                  minimumSize: const Size(double.infinity, 50),
+                  primary: Colors.transparent,
+                  onPrimary: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    side: const BorderSide(color: Colors.blue),
                   ),
+                  elevation: 0, // Remove button elevation
                 ),
                 child: const Text(
                   "Login",
-                  style: TextStyle(
-                      color: Color.fromARGB(137, 255, 255, 255), fontSize: 18),
+                  style: TextStyle(color: Colors.black, fontSize: 18),
                 )),
             TextButton(
                 child: const Text("Don't have an account? Sign up here",

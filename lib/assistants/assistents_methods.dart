@@ -171,8 +171,7 @@ class AssistantMethods {
             .updateDriverEarnings(driverEarnings);
       }
     });
-
-    readTripKeyForOnlineDriver(context);
+    readDriverRating(context);
   }
 
   // read driver rating

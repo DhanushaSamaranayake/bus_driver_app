@@ -26,13 +26,13 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        elevation: 2,
+        elevation: 5,
         backgroundColor: Colors.transparent,
         child: Container(
           margin: const EdgeInsets.all(8),
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color.fromARGB(61, 255, 255, 255),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
@@ -40,7 +40,7 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
             children: [
               const SizedBox(height: 14),
               Image.asset(
-                "assets/images/car_logo.png",
+                "assets/images/Luxury.png",
                 width: 160,
               ),
               const SizedBox(
@@ -51,6 +51,7 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
                 style: TextStyle(
                     fontSize: 22,
                     fontFamily: "Brand Bold",
+                    color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),
               const SizedBox(
@@ -75,7 +76,8 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
                           child: Container(
                             child: Text(
                               widget.userRideRequest!.originAddress!,
-                              style: const TextStyle(fontSize: 16),
+                              style: const TextStyle(
+                                  fontSize: 16, color: Colors.white),
                             ),
                           ),
                         )
@@ -101,7 +103,8 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
                           child: Container(
                             child: Text(
                               widget.userRideRequest!.destinationAddress!,
-                              style: const TextStyle(fontSize: 16),
+                              style: const TextStyle(
+                                  fontSize: 16, color: Colors.white),
                             ),
                           ),
                         )
@@ -113,7 +116,7 @@ class _NotificationDialogBox extends State<NotificationDialogBox> {
               const Divider(
                 height: 2,
                 thickness: 2,
-                color: Colors.redAccent,
+                color: Colors.blueAccent,
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),

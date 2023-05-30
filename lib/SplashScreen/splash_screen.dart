@@ -1,10 +1,10 @@
 import 'dart:async';
-
+import 'package:bus_driver_app/TabPages/home.dart';
 import 'package:bus_driver_app/auth/login.dart';
 import 'package:bus_driver_app/auth/signup.dart';
 import 'package:bus_driver_app/global/global.dart';
-import 'package:bus_driver_app/mainScreens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MySplashScreen extends StatefulWidget {
   const MySplashScreen({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
       if (await fAuth.currentUser != null) {
         currentFirebaseUser = fAuth.currentUser;
         Navigator.push(
-            context, MaterialPageRoute(builder: (c) => const MainScreen()));
+            context, MaterialPageRoute(builder: (c) => const Home()));
       } else {
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const LoginScreen()));
@@ -36,6 +36,8 @@ class _MySplashScreenState extends State<MySplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return Material(
       child: Container(
         color: Colors.white,
@@ -49,20 +51,6 @@ class _MySplashScreenState extends State<MySplashScreen> {
               height: 250,
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Bus booking and Tracking',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const Text(
-              'inDriver App',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
           ],
         )),
       ),

@@ -37,9 +37,16 @@ class AppInfo extends ChangeNotifier {
 
   updateDriverEarnings(String driverEarnings) {
     driverTotalEarnings = driverEarnings;
+    notifyListeners();
   }
 
   updateDriverRating(String driverRating) {
     driverTotalRatings = driverRating;
+    notifyListeners();
+  }
+
+  void addTripToHistory(TripHistoryModel tripHistoryModel) {
+    allHistoryTripList.clear(); // clear the list before adding new items
+    allHistoryTripList.add(tripHistoryModel);
   }
 }

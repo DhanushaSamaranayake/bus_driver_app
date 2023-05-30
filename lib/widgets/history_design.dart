@@ -48,7 +48,7 @@ class _HistoryDesignUi extends State<HistoryDesignUi> {
                     Padding(
                       padding: const EdgeInsets.all(6.0),
                       child: Text(
-                        "User : " + widget.tripHistoryModel!.userName!,
+                        "User : " + (widget.tripHistoryModel?.userName ?? ''),
                         style: const TextStyle(
                             fontSize: 18,
                             fontFamily: "Brand-Bold",
@@ -76,7 +76,7 @@ class _HistoryDesignUi extends State<HistoryDesignUi> {
                   children: [
                     const Icon(Icons.phone_iphone, color: Colors.grey),
                     Text(
-                      widget.tripHistoryModel!.userPhone!,
+                      (widget.tripHistoryModel?.userPhone ?? ''),
                       style: const TextStyle(
                           fontSize: 18, fontFamily: "Brand-Bold"),
                     ),
@@ -101,7 +101,7 @@ class _HistoryDesignUi extends State<HistoryDesignUi> {
                     Expanded(
                       child: Container(
                         child: Text(
-                          widget.tripHistoryModel!.originAddress!,
+                          (widget.tripHistoryModel?.originAddress ?? ''),
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               fontSize: 18, fontFamily: "Brand-Bold"),
@@ -128,7 +128,7 @@ class _HistoryDesignUi extends State<HistoryDesignUi> {
                     Expanded(
                       child: Container(
                         child: Text(
-                          widget.tripHistoryModel!.destinationAddress!,
+                          (widget.tripHistoryModel?.destinationAddress ?? ''),
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               fontSize: 18, fontFamily: "Brand-Bold"),
@@ -150,7 +150,7 @@ class _HistoryDesignUi extends State<HistoryDesignUi> {
                       width: 12,
                     ),
                     Text(
-                      formatDateAndTime(widget.tripHistoryModel!.time!),
+                      formatDateAndTime((widget.tripHistoryModel?.time ?? '')),
                       style: const TextStyle(
                           fontSize: 18, fontFamily: "Brand-Bold"),
                     ),

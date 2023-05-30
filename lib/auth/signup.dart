@@ -104,29 +104,46 @@ class _SignupScreen extends State<SignupScreen> {
                   color: Colors.black,
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
               TextField(
                 controller: nameTexteditingController,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 13.0,
                 ),
-                decoration: const InputDecoration(
-                    labelText: "Name",
-                    hintText: "Name",
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10.0,
-                    ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                    )),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  prefixIcon: const Icon(
+                    Icons.person,
+                    color: Colors.black,
+                  ),
+                  labelText: "Name",
+                  hintText: "Name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10.0,
+                  ),
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.0,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               TextField(
                 controller: emailTexteditingController,
@@ -135,23 +152,37 @@ class _SignupScreen extends State<SignupScreen> {
                   color: Colors.black,
                   fontSize: 13.0,
                 ),
-                decoration: const InputDecoration(
-                    labelText: "Email",
-                    hintText: "Email",
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10.0,
-                    ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                    )),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  prefixIcon: const Icon(
+                    Icons.email,
+                    color: Colors.black,
+                  ),
+                  labelText: "Email",
+                  hintText: "Email",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10.0,
+                  ),
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.0,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               TextField(
                 controller: phoneTexteditingController,
@@ -160,23 +191,37 @@ class _SignupScreen extends State<SignupScreen> {
                   color: Colors.black,
                   fontSize: 13.0,
                 ),
-                decoration: const InputDecoration(
-                    labelText: "Phone",
-                    hintText: "Phone",
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10.0,
-                    ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                    )),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  prefixIcon: const Icon(
+                    Icons.phone,
+                    color: Colors.black,
+                  ),
+                  labelText: "Phone",
+                  hintText: "Phone",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10.0,
+                  ),
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.0,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
               TextField(
                 controller: passwordTexteditingController,
@@ -186,23 +231,34 @@ class _SignupScreen extends State<SignupScreen> {
                   color: Colors.black,
                   fontSize: 13.0,
                 ),
-                decoration: const InputDecoration(
-                    labelText: "Password",
-                    hintText: "Password",
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 10.0,
-                    ),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14.0,
-                    )),
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  prefixIcon: const Icon(
+                    Icons.email,
+                    color: Colors.black,
+                  ),
+                  labelText: "Password",
+                  hintText: "Password",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.blue),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10.0,
+                  ),
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.0,
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -212,17 +268,18 @@ class _SignupScreen extends State<SignupScreen> {
                     validateForm();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    onPrimary: Colors.white,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(14)),
+                    minimumSize: const Size(double.infinity, 50),
+                    primary: Colors.transparent,
+                    onPrimary: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                      side: const BorderSide(color: Colors.red),
                     ),
+                    elevation: 0, // Remove button elevation
                   ),
                   child: const Text(
                     "Create Account",
-                    style: TextStyle(
-                        color: Color.fromARGB(137, 255, 255, 255),
-                        fontSize: 18),
+                    style: TextStyle(color: Colors.black, fontSize: 18),
                   )),
               TextButton(
                   child: const Text("Already have an Account? Login here",
